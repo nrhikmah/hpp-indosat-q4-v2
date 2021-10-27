@@ -118,6 +118,8 @@ class Jawara  {
         this.cb_flash_sale = cb_flash_sale
         this.cb_imei = cb_imei
         this.cb_super_attack = cb_super_attack
+        this.total_cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
+        this.total_modal = this.mobo + this.sp;
     }
 
     modal(){
@@ -125,43 +127,37 @@ class Jawara  {
     }
 
     hpp_non_jawara() {
-        var cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
+        
         var jawara = 0;
         var loyalty = 0;
-        var modal = this.mobo + this.sp;
-        return hpp_jawara(modal,cashback,jawara,loyalty,this.pcs);
+        return hpp_jawara(this.total_modal,this.total_cashback,jawara,loyalty,this.pcs);
     }
 
     hpp_100k(){
-        var cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
+        
         var jawara = jawara100k(this.mobo);
         var loyalty = loyalty_jawara(this.mobo);
-        var modal = this.mobo + this.sp;
-        return hpp_jawara(modal,cashback,jawara,loyalty,this.pcs);
+        return hpp_jawara(this.total_modal,this.total_cashback,jawara,loyalty,this.pcs);
     }
 
     hpp_1jt(){
-        var cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
+        
         var jawara = jawara1jt(this.mobo);
         var loyalty = loyalty_jawara(this.mobo);
-        var modal = this.mobo + this.sp;
-        return hpp_jawara(modal,cashback,jawara,loyalty,this.pcs);
+        return hpp_jawara(this.total_modal,this.total_cashback,jawara,loyalty,this.pcs);
     }
 
     hpp_10jt(){
-        var cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
+        
         var jawara = jawara10jt(this.mobo);
         var loyalty = loyalty_jawara(this.mobo);
-        var modal = this.mobo + this.sp;
-        return hpp_jawara(modal,cashback,jawara,loyalty,this.pcs);
+        return hpp_jawara(this.total_modal,this.total_cashback,jawara,loyalty,this.pcs);
     }
 
     hpp_100jt(){
-        var cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
         var jawara = jawara100jt(this.mobo);
         var loyalty = loyalty_jawara(this.mobo);
-        var modal = this.mobo + this.sp;
-        return hpp_jawara(modal,cashback,jawara,loyalty,this.pcs);
+        return hpp_jawara(this.total_modal,this.total_cashback,jawara,loyalty,this.pcs);
     }
 
     cuan_non_jawara(){
@@ -195,6 +191,9 @@ class Sultan  {
         this.cb_rebuy = cb_rebuy
         this.cb_flash_sale = cb_flash_sale
         this.cb_super_attack = cb_super_attack
+        this.total_modal = this.mobo + this.vc;
+        this.cashback_v = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
+        this.cashback_r = total_cashback_rebuy(this.cb_rebuy,this.cb_flash_sale,this.cb_super_attack)
     }
 
     modal(){
@@ -209,8 +208,7 @@ class Sultan  {
         var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_basic(this.mobo);
         var loyalty = loyalty_sultan_basic(this.mobo);
-        var modal = this.mobo + this.vc;
-        return hpp_sultan_basic(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_basic(this.total_modal,cashback,sultan,loyalty,this.pcs);
     }
 
     hpp_basic_rebuy(){
@@ -225,24 +223,21 @@ class Sultan  {
        var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium125(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        var modal = this.mobo + this.vc;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
     }
 
     hpp_premium1M_voucher(){
        var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium1M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        var modal = this.mobo + this.vc;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
     }
 
     hpp_premium4M_voucher(){
        var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium4M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        var modal = this.mobo + this.vc;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
     }
 
     hpp_premium125_rebuy(){
@@ -312,6 +307,10 @@ function hpp(){
         var select_program = document.getElementById('program');
         var paket = select_paket.options[select_paket.selectedIndex].value;
         var program = select_program.options[select_program.selectedIndex].value;
+
+        document.getElementById("detail-jawara").style.display = "none"
+        document.getElementById("detail-sultan").style.display = "none"
+        document.getElementById("detail-sultan-rebuy").style.display = "none"
 
         // non jawara
         if (paket == "yellow1") {
@@ -1616,12 +1615,6 @@ function hpp(){
             else{
                 non_jawara(paket_jawara)
             }
-            // else if (program == "jwr10jt") {
-            //     hitung_jawara10jt(paket_jawara)
-            // }
-            // else if (program == "jwr100jt") {
-            //     hitung_jawara100jt(paket_jawara)
-            // }
         }
 
         // non sultan & jawara 10,100 
@@ -1635,12 +1628,6 @@ function hpp(){
             else if (program == "jwr1jt") {
                 hitung_jawara1jt(paket_jawara)
             }
-            // else if (program == "jwr10jt") {
-            //     hitung_jawara10jt(paket_jawara)
-            // }
-            // else if (program == "jwr100jt") {
-            //     hitung_jawara100jt(paket_jawara)
-            // }
             else{
                 non_jawara(paket_jawara)
             }
@@ -1657,17 +1644,39 @@ function hpp(){
             else if (program == "jwr1jt") {
                 hitung_jawara1jt(paket_jawara)
             }
-            // else if (program == "jwr10jt") {
-            //     hitung_jawara10jt(paket_jawara)
-            // }
-            // else if (program == "jwr100jt") {
-            //     hitung_jawara100jt(paket_jawara)
-            // }
             else{
                 non_jawara(paket_jawara)
             }
         }
         
+}
+
+function detail_cb(paket_jawara){
+    document.getElementById("harga-mobo-j").innerHTML =paket_jawara.mobo;
+    document.getElementById("sp").innerHTML =paket_jawara.sp;
+    document.getElementById("newsp").innerHTML =paket_jawara.cb_newsp
+    document.getElementById("tagging").innerHTML =paket_jawara.cb_taging
+    document.getElementById("top-product").innerHTML =paket_jawara.cb_top_product
+    document.getElementById("cb-flashsale").innerHTML =paket_jawara.cb_flash_sale
+    document.getElementById("cb-imei").innerHTML =paket_jawara.cb_imei
+    document.getElementById("cb-super-attack").innerHTML =paket_jawara.cb_super_attack
+    document.getElementById("total-cb").innerHTML =paket_jawara.total_cashback
+}
+
+function detail_cb_voucher(paket_sultan){
+    document.getElementById("harga-mobo-s").innerHTML =paket_sultan.mobo;
+    document.getElementById("vc").innerHTML =paket_sultan.vc;
+    document.getElementById("inject-vc").innerHTML =paket_sultan.cb_inject_vc
+    document.getElementById("reedem-vc").innerHTML =paket_sultan.cb_redeem_vc
+    document.getElementById("cb-flashsale-s").innerHTML =paket_sultan.cb_flash_sale
+    document.getElementById("total-cb-s").innerHTML =paket_sultan.cashback_v
+}
+
+function detail_cb_rebuy(paket_sultan){
+    document.getElementById("harga-mobo-r").innerHTML =paket_sultan.mobo;
+    document.getElementById("rebuy").innerHTML =paket_sultan.cb_rebuy
+    document.getElementById("cb-flashsale-r").innerHTML =paket_sultan.cb_flash_sale
+    document.getElementById("total-cb-r").innerHTML =paket_sultan.cashback_r
 }
 
 function non_jawara(paket_jawara){
@@ -1680,72 +1689,85 @@ function hitung_jawara100k(paket_jawara){
     document.getElementById("modal").innerHTML = Math.round(paket_jawara.modal());
     document.getElementById("hpp").innerHTML = Math.round(paket_jawara.hpp_100k());
     document.getElementById("cuan").innerHTML =Math.round(paket_jawara.cuan_100k());
+    detail_cb(paket_jawara)
 }
 
 function hitung_jawara1jt(paket_jawara){
     document.getElementById("modal").innerHTML = Math.round(paket_jawara.modal());
     document.getElementById("hpp").innerHTML = Math.round(paket_jawara.hpp_1jt());
     document.getElementById("cuan").innerHTML =Math.round(paket_jawara.cuan_1jt());
+    detail_cb(paket_jawara)
 }
 
 function hitung_jawara10jt(paket_jawara){
     document.getElementById("modal").innerHTML = Math.round(paket_jawara.modal())
     document.getElementById("hpp").innerHTML = Math.round(paket_jawara.hpp_10jt())
     document.getElementById("cuan").innerHTML =Math.round(paket_jawara.cuan_10jt())
+    detail_cb(paket_jawara)
 }
 
 function hitung_jawara100jt(paket_jawara){
     document.getElementById("modal").innerHTML = Math.round(paket_jawara.modal())
     document.getElementById("hpp").innerHTML = Math.round(paket_jawara.hpp_100jt())
     document.getElementById("cuan").innerHTML =Math.round(paket_jawara.cuan_100jt())    
+    detail_cb(paket_jawara)
 }
 
 function hitung_sultan_basic_voucher(paket_sultan_basic){
     document.getElementById("modal").innerHTML = paket_sultan_basic.modal();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_basic.hpp_basic_voucher());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_basic.cuan_basic_voucher());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_basic.cuan_basic_voucher());
+    detail_cb_voucher(paket_sultan_basic)
 }
 
 function hitung_sultan_basic_rebuy(paket_sultan_basic){
     document.getElementById("modal").innerHTML = paket_sultan_basic.modal_rebuy();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_basic.hpp_basic_rebuy());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_basic.cuan_basic_rebuy());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_basic.cuan_basic_rebuy());  
+    detail_cb_rebuy(paket_sultan_basic)    
+
 }
 
 function hitung_sultan_125_voucher(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium125_voucher());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium125_voucher());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium125_voucher());
+    detail_cb_voucher(paket_sultan_premium)    
 }
 
 function hitung_sultan_125_rebuy(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal_rebuy();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium125_rebuy());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium125_rebuy());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium125_rebuy());
+    detail_cb_rebuy(paket_sultan_premium)      
 }
 
 function hitung_sultan_1M_voucher(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium1M_voucher());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium1M_voucher());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium1M_voucher());  
+    detail_cb_voucher(paket_sultan_premium)  
 }
 
 function hitung_sultan_1M_rebuy(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal_rebuy();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium1M_rebuy());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium1M_rebuy());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium1M_rebuy());   
+    detail_cb_rebuy(paket_sultan_premium)   
 }
 
 function hitung_sultan_4M_voucher(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium4M_voucher());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium4M_voucher());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium4M_voucher());
+    detail_cb_voucher(paket_sultan_premium)     
 }
 
 function hitung_sultan_4M_rebuy(paket_sultan_premium){
     document.getElementById("modal").innerHTML = paket_sultan_premium.modal_rebuy();
     document.getElementById("hpp").innerHTML = Math.round(paket_sultan_premium.hpp_premium4M_rebuy());
-    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium4M_rebuy());    
+    document.getElementById("cuan").innerHTML =Math.round(paket_sultan_premium.cuan_premium4M_rebuy()); 
+    detail_cb_rebuy(paket_sultan_premium)    
 }
 
 
@@ -1754,6 +1776,9 @@ function resetButton() {
     document.getElementById("modal").innerHTML = " ";
     document.getElementById("hpp").innerHTML = " ";
     document.getElementById("cuan").innerHTML = " ";
+    document.getElementById("detail-jawara").style.display = "none"
+        document.getElementById("detail-sultan").style.display = "none"
+        document.getElementById("detail-sultan-rebuy").style.display = "none"
 }
 
 function checklist1(){
@@ -1798,9 +1823,36 @@ function checklist3(){
       }
 }
 
-
-// function hitung(paket_name) {
-//     document.getElementById("modal").innerHTML = paket_name.modal();
-//     document.getElementById("hpp").innerHTML = paket_name.hpp();
-//     document.getElementById("cuan").innerHTML =paket_name.cuan();
-// }
+function details() {
+    var x = document.getElementById("detail-jawara");
+    var y = document.getElementById("detail-sultan");
+    var z = document.getElementById("detail-sultan-rebuy");
+    var program = document.getElementById("program")
+    if (program.value == "jwr100k" || program.value =="jwr1jt" || program.value =="jwr10jt" || program.value =="jwr100jt"){
+        y.style.display = "none";
+        z.style.display = "none";
+        if (x.style.display === "none") {
+            x.style.display = "";
+          } else {
+            x.style.display = "none";
+          }
+    }
+    else if(program.value == "sltbvoucher" || program.value =="sltp125voucher" || program.value =="sltp1Mvoucher" || program.value =="sltp4Mvoucher"){
+        x.style.display = "none";
+        z.style.display = "none";
+        if (y.style.display === "none") {
+            y.style.display = "";
+          } else {
+            y.style.display = "none";
+          }
+    }
+    else{
+        x.style.display = "none";
+        y.style.display = "none";
+        if (z.style.display === "none") {
+            z.style.display = "";
+          } else {
+            z.style.display = "none";
+          }
+    }
+  }
