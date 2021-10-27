@@ -91,10 +91,10 @@
                         <select class="form-select form-select mb-1" id="program" aria-label=".form-select-sm example">
                             <option disabled selected value>-- Pilih Program -- </option>
                             <option disabled value style="font-family: noto-bold-italic;">- Jawara -</option>
-                            <option value="jwr100k">Jawara 100K</option>
-                            <option value="jwr1jt">Jawara 1 juta</option>
-                            <option value="jwr10jt">Jawara 10 juta</option>
-                            <option value="jwr100jt">Jawara 100 juta</option>
+                            <option value="jwr100k" name="jawara">Jawara 100K</option>
+                            <option value="jwr1jt" name="jawara">Jawara 1 juta</option>
+                            <option value="jwr10jt" name="jawara">Jawara 10 juta</option>
+                            <option value="jwr100jt" name="jawara">Jawara 100 juta</option>
                             <option disabled value style="font-family: noto-bold-italic;">- Sultan Basic -</option>
                             <option value="sltbvoucher">Sultan Basic (Voucher)</option>
                             <option value="sltbrebuy">Sultan Basic (Isi Ulang)</option>
@@ -140,13 +140,15 @@
               </div>
             <button type="button" class="btn px-sm-5" style="background-color: 
             #ffcd00; color: black; border-radius: 25px;" onclick="hpp()">Hitung</button>
+            <button type="button" class="btn px-sm-5 btn-primary" style="background-color: 
+            #ffcd00; color: black; border-radius: 25px;" onclick="details()">Details</button>
             <button type="button" class="btn px-sm-5" style="background-color: 
             #ed1c24; color: white; border-radius: 25px;" onclick="resetButton()">Reset!</button>
         </form>
 
         <br>
         <div id="display">
-            <table class="table table-warning m-auto" style="width: 80%;">
+            <table class="table table-warning m-auto" style="width: 75%;">
                 <tr>
                     <td class="w-50">
                         Total Modal
@@ -173,7 +175,217 @@
                     </td>
                 </tr>       
             </table>
+            <br>
         </div>
+        <table class="table table-info m-auto" id="detail-jawara" style="width: 75%; display: none;">
+            <tr>
+                <td colspan="2">Detail Harga & cashback</td>
+            </tr>
+                <tr>
+                    <td class="w-50">
+                        Harga mobo
+                    </td>
+                    <td class=" text-start">
+                        : Rp.<span id="harga-mobo-j"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Harga SP
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="sp"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cashback New SP
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="newsp"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cashback Top Product
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="top-product"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        Cashback Tag & Go
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="tagging"></span>
+                    </td>
+                </tr> 
+                  
+                <tr>
+                    <td>
+                        Cashback Flash Sale
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-flashsale"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        Cashback IMEI
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-imei"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        Cashback Super Attack
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-super-attack"></span>
+                    </td>
+                </tr>   
+                <tfoot>
+                    <td>
+                        Total Cashback
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="total-cb"></span>
+                    </td>
+                </tfoot>    
+        </table>
+
+        <table class="table table-info m-auto" id="detail-sultan" style="width: 75%; display: none;">
+            <tr>
+                <td colspan="2">Detail Harga & cashback</td>
+            </tr>
+                <tr>
+                    <td class="w-50">
+                        Harga mobo
+                    </td>
+                    <td class=" text-start">
+                        : Rp.<span id="harga-mobo-s"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Harga Voucher
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="vc"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cashback Inject VC
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="inject-vc"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cashback Redeem VC
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="reedem-vc"></span>
+                    </td>
+                </tr>              
+                <tr>
+                    <td>
+                        Cashback Flash Sale
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-flashsale-s"></span>
+                    </td>
+                </tr> 
+                <!-- <tr>
+                    <td>
+                        Cashback IMEI
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-imei-s"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        Cashback Super Attack
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-super-attack-s"></span>
+                    </td>
+                </tr>    -->
+                <tfoot>
+                    <td>
+                        Total Cashback
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="total-cb-s"></span>
+                    </td>
+                </tfoot>    
+        </table>
+
+        <table class="table table-info m-auto" id="detail-sultan-rebuy" style="width: 75%; display: none;">
+            <tr>
+                <td colspan="2">Detail Harga & cashback</td>
+            </tr>
+                <tr>
+                    <td class="w-50">
+                        Harga mobo
+                    </td>
+                    <td class=" text-start">
+                        : Rp.<span id="harga-mobo-r"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Cashback Rebuy
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="rebuy"></span>
+                    </td>
+                </tr> 
+                  
+                <tr>
+                    <td>
+                        Cashback Flash Sale
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-flashsale-r"></span>
+                    </td>
+                </tr> 
+                <!-- <tr>
+                    <td>
+                        Cashback IMEI
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-imei-s"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        Cashback Super Attack
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="cb-super-attack-s"></span>
+                    </td>
+                </tr>    -->
+                <tfoot>
+                    <td>
+                        Total Cashback
+                    </td>
+                    <td class=" text-start">
+                        : RP.<span id="total-cb-r"></span>
+                    </td>
+                </tfoot>    
+        </table>
+
+
+
        
     </div>
     <footer class="text-center mb-3" style="font-size: 70%;">
