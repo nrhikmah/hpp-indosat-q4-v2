@@ -116,6 +116,7 @@ class Jawara  {
         this.cb_top_product = cb_top_product
         this.cb_taging = cb_taging
         this.cb_flash_sale = cb_flash_sale
+        // this.cb_raja_cuan = cb_raja_cuan
         this.cb_imei = cb_imei
         this.cb_super_attack = cb_super_attack
         this.total_cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
@@ -205,63 +206,55 @@ class Sultan  {
     }
 
     hpp_basic_voucher(){
-        var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_basic(this.mobo);
         var loyalty = loyalty_sultan_basic(this.mobo);
-        return hpp_sultan_basic(this.total_modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_basic(this.total_modal,this.cashback_v,sultan,loyalty,this.pcs);
     }
 
     hpp_basic_rebuy(){
-        var cashback = total_cashback_rebuy(this.cb_rebuy,this.cb_flash_sale,this.cb_super_attack)
         var sultan = sultan_basic(this.mobo);
         var loyalty = loyalty_sultan_basic(this.mobo);
         var modal = this.mobo;
-        return hpp_sultan_basic(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_basic(modal,this.cashback_r,sultan,loyalty,this.pcs);
     }
 
     hpp_premium125_voucher(){
-       var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium125(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,this.cashback_v,sultan,loyalty,this.pcs);
     }
 
     hpp_premium1M_voucher(){
-       var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium1M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,this.cashback_v,sultan,loyalty,this.pcs);
     }
 
     hpp_premium4M_voucher(){
-       var cashback = total_cashback_voucher(this.cb_inject_vc,this.cb_redeem_vc,this.cb_flash_sale,this.cb_super_attack);
         var sultan = sultan_premium4M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
-        return hpp_sultan_premium(this.total_modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(this.total_modal,this.cashback_v,sultan,loyalty,this.pcs);
     }
 
     hpp_premium125_rebuy(){
-        var cashback = total_cashback_rebuy(this.cb_rebuy,this.cb_flash_sale,this.cb_super_attack)
         var sultan = sultan_premium125(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
         var modal = this.mobo;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(modal,this.cashback_r,sultan,loyalty,this.pcs);
     }
 
     hpp_premium1M_rebuy(){
-        var cashback = total_cashback_rebuy(this.cb_rebuy,this.cb_flash_sale,this.cb_super_attack)
         var sultan = sultan_premium1M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
         var modal = this.mobo;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(modal,this.cashback_r,sultan,loyalty,this.pcs);
     }
 
     hpp_premium4M_rebuy(){
-        var cashback = total_cashback_rebuy(this.cb_rebuy,this.cb_flash_sale,this.cb_super_attack)
         var sultan = sultan_premium4M(this.mobo);
         var loyalty = loyalty_sultan_premium(this.mobo);
         var modal = this.mobo;
-        return hpp_sultan_premium(modal,cashback,sultan,loyalty,this.pcs);
+        return hpp_sultan_premium(modal,this.cashback_r,sultan,loyalty,this.pcs);
     }
 
     cuan_basic_voucher(){
@@ -295,11 +288,10 @@ class Sultan  {
     cuan_premium4M_rebuy(){
         return this.modal_rebuy() - this.hpp_premium4M_rebuy() ;
     }
-   
 }
 
 function hpp(){
-        var flash_sale = parseInt(document.getElementById("flash-sale").value)
+        var flash_sale = 0
         var imei = parseInt(document.getElementById("imei").value)
         var super_attack = parseInt(document.getElementById("super-attack").value)
         var pcs = parseInt(document.getElementById("pcs").value)
@@ -311,6 +303,42 @@ function hpp(){
         document.getElementById("detail-jawara").style.display = "none"
         document.getElementById("detail-sultan").style.display = "none"
         document.getElementById("detail-sultan-rebuy").style.display = "none"
+
+        var radioCheck1 = document.getElementById("flexRadioDefault1");
+        var radioCheck2 = document.getElementById("flexRadioDefault2");
+        var radioCheck3 = document.getElementById("flexRadioDefault3");
+        var radioCheck4 = document.getElementById("flexRadioDefault4");
+  
+        if (radioCheck1.checked == true || radioCheck3.checked == true) {
+            if (paket == "fi3" || paket == "fc6" || paket == "fi5" || paket == "fu1") {
+                flash_sale = 500
+                
+            }else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7"){
+                flash_sale = 1000
+            } else{
+                flash_sale = 0
+            }
+        } 
+        else if(radioCheck2.checked == true){
+            if (paket == "fi3" || paket == "fc6" || paket == "fi5" || paket == "fu1") {
+                flash_sale = 1000
+            }else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7"){
+                flash_sale = 2000
+            }
+            else{
+                flash_sale = 0
+            }
+        }
+        else if(radioCheck4.checked == true){
+            if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
+                flash_sale = 100
+            }else{
+                flash_sale = 0
+            }
+        }
+        else{
+            flash_sale = 0 
+        }
 
         // non jawara
         if (paket == "yellow1") {
@@ -433,7 +461,7 @@ function hpp(){
         else if (paket == "sachet2") {
             var mobo = 9900;
             var paket_jawara = new Jawara(mobo,sp2250,pcs,cb_newsp0,cb_top_produk0,cb_taging0,flash_sale,imei,super_attack)
-            var paket_sultan_basic = new Sultan(mobo,vc500,pcs,cb_inject_vc,cb_redeem_vc0,cb_rebuy1000,flash_sale,super_attack)
+            var paket_sultan_basic = new Sultan(mobo,vc500,pcs,cb_inject_vc0,cb_redeem_vc0,cb_rebuy1000,flash_sale,super_attack)
     
             
             if (program == "sltbvoucher") {
@@ -1783,15 +1811,25 @@ function resetButton() {
 
 function checklist1(){
   var checkBox = document.getElementById("fs-check");
-  var input = document.getElementById("flash-sale");
+  var radioCheck1 = document.getElementById("flexRadioDefault1");
+  var radioCheck2 = document.getElementById("flexRadioDefault2");
+  var radioCheck3 = document.getElementById("flexRadioDefault3");
+  var radioCheck4 = document.getElementById("flexRadioDefault4");
+  var button = document.querySelector('.button')
+//   var input = document.getElementById("flash-sale");
 
   // If the checkbox is checked, display the output text
   if (checkBox.checked == true){
-    input.style.display = "block";
-    input.value = ""
+
+    button.style.display = "block"
+    // input.disabled = true;
   } else {
-    input.style.display = "none";
-    input.value = "0"
+    button.style.display = "none";
+    radioCheck1.checked = false;
+    radioCheck2.checked = false;
+    radioCheck3.checked = false;
+    radioCheck4.checked = false;
+    // input.value = "0"    
   }
 }
 
@@ -1802,7 +1840,8 @@ function checklist2(){
     // If the checkbox is checked, display the output text
     if (checkBox.checked == true){
         input.style.display = "block";
-        input.value = ""
+        input.disabled = true;
+        input.value = "5000"
       } else {
         input.style.display = "none";
         input.value = "0"
@@ -1816,7 +1855,8 @@ function checklist3(){
     // If the checkbox is checked, display the output text
     if (checkBox.checked == true){
         input.style.display = "block";
-        input.value = ""
+        input.disabled = true;
+        input.value = "2000"
       } else {
         input.style.display = "none";
         input.value = "0"
