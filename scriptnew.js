@@ -95,16 +95,16 @@ function total_cashback_rebuy(rebuy,flash_sale,super_attack) {
     return parseInt(rebuy) + parseInt(flash_sale) + parseInt(super_attack);
 }
 
-function hpp_jawara(modal,total_cashback,program,loyalty,pcs) {
-    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))*parseInt(pcs)
+function hpp_jawara(modal,total_cashback,program,loyalty) {
+    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))
 }
 
-function hpp_sultan_basic(modal,total_cashback,program,loyalty,pcs) {
-    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))*parseInt(pcs)
+function hpp_sultan_basic(modal,total_cashback,program,loyalty) {
+    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))
 }
 
-function hpp_sultan_premium(modal,total_cashback,program,loyalty,pcs) {
-    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))*parseInt(pcs)
+function hpp_sultan_premium(modal,total_cashback,program,loyalty) {
+    return (modal -(total_cashback + program + loyalty)+((total_cashback + program + loyalty)*6/100))
 }
 
 class Jawara  {
@@ -304,42 +304,57 @@ function hpp(){
         document.getElementById("detail-sultan").style.display = "none"
         document.getElementById("detail-sultan-rebuy").style.display = "none"
 
-        var radioCheck1 = document.getElementById("flexRadioDefault1");
-        var radioCheck2 = document.getElementById("flexRadioDefault2");
-        var radioCheck3 = document.getElementById("flexRadioDefault3");
-        var radioCheck4 = document.getElementById("flexRadioDefault4");
+        var checkBox = document.getElementById("fs-check");
   
-        if (radioCheck1.checked == true || radioCheck3.checked == true) {
+        if (checkBox.checked == true) {
             if (paket == "fi3" || paket == "fc6" || paket == "fi5" || paket == "fu1") {
-                flash_sale = 500
-                
-            }else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7"){
-                flash_sale = 1000
-            } else{
-                flash_sale = 0
+                if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt"){
+                    if (pcs <= 15){
+                        // flash_sale = 500 *pcs
+                        flash_sale = 500
+                    }
+                    else if (pcs >=16 && pcs <= 30){
+                        var total = ((pcs - 15) * 1000) + 15*500
+                        // flash_sale = total
+                        flash_sale = 1000
+                    }
+                    else {
+                        var total = ((pcs - 30) * 500) + (15*500) + (15*1000)
+                        // flash_sale = total
+                        flash_sale = 500
+                    }
+                }
+                else{
+                    flash_sale=0
+                }
             }
-        } 
-        else if(radioCheck2.checked == true){
-            if (paket == "fi3" || paket == "fc6" || paket == "fi5" || paket == "fu1") {
-                flash_sale = 1000
-            }else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7"){
-                flash_sale = 2000
-            }
-            else{
-                flash_sale = 0
-            }
-        }
-        else if(radioCheck4.checked == true){
-            if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
-                flash_sale = 100
-            }else{
-                flash_sale = 0
-            }
-        }
-        else{
-            flash_sale = 0 
-        }
 
+            else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
+                if (program == "sltvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
+                    flash_sale = 100;
+                }
+                else if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt") {
+                    if (pcs <= 10){
+                        // flash_sale = 1000 *pcs
+                        flash_sale = 1000
+                    }
+                    else if (pcs >=11 && pcs <= 30){
+                        var total = ((pcs - 10) * 2000) + (10*1000)
+                        // flash_sale = total
+                        flash_sale = 2000
+                    }
+                    else {
+                        var total = ((pcs - 30) * 1000) + (10*1000) + 12*1000
+                        // flash_sale = total
+                        flash_sale = 1000
+                    }
+                }
+                else{
+                    flash_sale=0
+                }
+
+            }
+        }
         // non jawara
         if (paket == "yellow1") {
             var mobo = 10000;
