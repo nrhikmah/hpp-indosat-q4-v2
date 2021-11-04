@@ -13,6 +13,7 @@ var cb_newsp10000 = 10000;
 var cb_top_produk0 = 0;
 var cb_top_produk300 = 300;
 var cb_top_produk500 = 500;
+var cb_top_produk1500 = 1500;
 var cb_top_produk2500 = 2500;
 var cb_taging0 = 0;
 var cb_taging500 = 500;
@@ -1256,7 +1257,7 @@ function hpp(){
 
         else if (paket == "fc20") {
             var mobo = 50000;
-            var paket_jawara = new Jawara(mobo,sp2250,pcs,cb_newsp7000,cb_top_produk300,cb_taging7000,flash_sale,imei,super_attack,flash_sale_stage)
+            var paket_jawara = new Jawara(mobo,sp2250,pcs,cb_newsp7000,cb_top_produk1500,cb_taging7000,flash_sale,imei,super_attack,flash_sale_stage)
             var paket_sultan_basic = new Sultan(mobo,vc500,pcs,cb_inject_vc0,cb_redeem_vc300,cb_rebuy3000,flash_sale,super_attack)
             var paket_sultan_premium = new Sultan(mobo,vc300,pcs,cb_inject_vc0,cb_redeem_vc500,cb_rebuy5500,flash_sale,super_attack)
 
@@ -1479,7 +1480,7 @@ function hpp(){
         
         else if (paket == "fu3") {
             var mobo = 60000;
-            var paket_jawara = new Jawara(mobo,sp2250,pcs,cb_newsp7000,cb_top_produk500,cb_taging7000,flash_sale,imei,super_attack,flash_sale_stage)
+            var paket_jawara = new Jawara(mobo,sp2250,pcs,cb_newsp7000,cb_top_produk1500,cb_taging7000,flash_sale,imei,super_attack,flash_sale_stage)
             var paket_sultan_basic = new Sultan(mobo,vc500,pcs,cb_inject_vc0,cb_redeem_vc300,cb_rebuy3000,flash_sale,super_attack)
             var paket_sultan_premium = new Sultan(mobo,vc300,pcs,cb_inject_vc0,cb_redeem_vc500,cb_rebuy5500,flash_sale,super_attack)
 
