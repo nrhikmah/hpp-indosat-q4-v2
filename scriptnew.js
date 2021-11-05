@@ -120,7 +120,7 @@ class Jawara  {
         this.cb_flash_sale_stage = cb_flash_sale_stage
         this.cb_imei = cb_imei
         this.cb_super_attack = cb_super_attack
-        this.total_cashback_pcs = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale_stage,this.cb_imei,this.cb_super_attack);
+        this.total_cashback_pcs = (this.cb_newsp+this.cb_top_product+this.cb_taging+this.cb_imei+this.cb_super_attack)*pcs + this.cb_flash_sale_stage;
         this.total_cashback = total_cashback_jawara(this.cb_newsp,this.cb_top_product,this.cb_taging,this.cb_flash_sale,this.cb_imei,this.cb_super_attack);
         this.total_modal = this.mobo + this.sp;
     }
@@ -333,7 +333,7 @@ function hpp(){
             }
 
             else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
-                if (program == "sltvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
+                if (program == "sltbvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
                     flash_sale = 100;
                 }
                 else if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt") {
@@ -1701,22 +1701,23 @@ function detail_cb(paket_jawara){
     var pcs = parseInt(document.getElementById("pcs").value)
     document.getElementById("harga-mobo-j").innerHTML =paket_jawara.mobo;
     document.getElementById("sp").innerHTML =paket_jawara.sp;
-    document.getElementById("newsp").innerHTML =paket_jawara.cb_newsp
-    document.getElementById("tagging").innerHTML =paket_jawara.cb_taging
-    document.getElementById("top-product").innerHTML =paket_jawara.cb_top_product
+    document.getElementById("newsp").innerHTML =paket_jawara.cb_newsp*pcs
+    document.getElementById("tagging").innerHTML =paket_jawara.cb_taging*pcs
+    document.getElementById("top-product").innerHTML =paket_jawara.cb_top_product*pcs
     document.getElementById("cb-flashsale").innerHTML =paket_jawara.cb_flash_sale_stage
     document.getElementById("cb-imei").innerHTML =paket_jawara.cb_imei*pcs
     document.getElementById("cb-super-attack").innerHTML =paket_jawara.cb_super_attack*pcs
-    document.getElementById("total-cb").innerHTML =paket_jawara.total_cashback
+    document.getElementById("total-cb").innerHTML =paket_jawara.total_cashback_pcs
 }
 
 function detail_cb_voucher(paket_sultan){
+    var pcs = parseInt(document.getElementById("pcs").value)
     document.getElementById("harga-mobo-s").innerHTML =paket_sultan.mobo;
     document.getElementById("vc").innerHTML =paket_sultan.vc;
-    document.getElementById("inject-vc").innerHTML =paket_sultan.cb_inject_vc
-    document.getElementById("reedem-vc").innerHTML =paket_sultan.cb_redeem_vc
-    document.getElementById("cb-flashsale-s").innerHTML =paket_sultan.cb_flash_sale
-    document.getElementById("total-cb-s").innerHTML =paket_sultan.cashback_v
+    document.getElementById("inject-vc").innerHTML =paket_sultan.cb_inject_vc*pcs
+    document.getElementById("reedem-vc").innerHTML =paket_sultan.cb_redeem_vc*pcs
+    document.getElementById("cb-flashsale-s").innerHTML =paket_sultan.cb_flash_sale*pcs
+    document.getElementById("total-cb-s").innerHTML =paket_sultan.cashback_v*pcs
 }
 
 function detail_cb_rebuy(paket_sultan){
@@ -1834,22 +1835,22 @@ function checklist1(){
   var radioCheck2 = document.getElementById("flexRadioDefault2");
   var radioCheck3 = document.getElementById("flexRadioDefault3");
   var radioCheck4 = document.getElementById("flexRadioDefault4");
-  var button = document.querySelector('.button')
+//   var button = document.querySelector('.button')
 //   var input = document.getElementById("flash-sale");
 
-  // If the checkbox is checked, display the output text
-  if (checkBox.checked == true){
+//   // If the checkbox is checked, display the output text
+//   if (checkBox.checked == true){
 
-    button.style.display = "block"
-    // input.disabled = true;
-  } else {
-    button.style.display = "none";
-    radioCheck1.checked = false;
-    radioCheck2.checked = false;
-    radioCheck3.checked = false;
-    radioCheck4.checked = false;
-    // input.value = "0"    
-  }
+//     button.style.display = "block"
+//     // input.disabled = true;
+//   } else {
+//     button.style.display = "none";
+//     radioCheck1.checked = false;
+//     radioCheck2.checked = false;
+//     radioCheck3.checked = false;
+//     radioCheck4.checked = false;
+//     // input.value = "0"    
+//   }
 }
 
 function checklist2(){
