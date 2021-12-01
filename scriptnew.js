@@ -313,18 +313,18 @@ function hpp(){
             if (paket == "fi3" || paket == "fc6" || paket == "fi5" || paket == "fu1") {
                 if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt"){
                     if (pcs <= 15){
-                        flash_sale_stage = 1000 *pcs
-                        flash_sale = 1000
+                        flash_sale_stage = 500 *pcs
+                        flash_sale = 500
                     }
                     else if (pcs >=16 && pcs <= 30){
-                        var total = ((pcs - 15) * 2000) + 15*1000
-                        flash_sale_stage = total
-                        flash_sale = 2000
-                    }
-                    else {
-                        var total = ((pcs - 30) * 1000) + (15*1000) + (15*2000)
+                        var total = ((pcs - 15) * 1000) + 15*500
                         flash_sale_stage = total
                         flash_sale = 1000
+                    }
+                    else {
+                        var total = ((pcs - 30) * 500) + (15*500) + (15*1000)
+                        flash_sale_stage = total
+                        flash_sale = 500
                     }
                 }
                 else{
@@ -334,22 +334,22 @@ function hpp(){
 
             else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
                 if (program == "sltbvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
-                    flash_sale = 200;
+                    flash_sale = 100;
                 }
                 else if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt") {
                     if (pcs <= 10){
-                        flash_sale_stage = 2000 *pcs
-                        flash_sale = 2000
+                        flash_sale_stage = 1000 *pcs
+                        flash_sale = 1000
                     }
                     else if (pcs >=11 && pcs <= 30){
-                        var total = ((pcs - 10) * 4000) + (10*2000)
-                        flash_sale_stage = total
-                        flash_sale = 4000
-                    }
-                    else {
-                        var total = ((pcs - 30) * 2000) + (10*2000) + 20*4000
+                        var total = ((pcs - 10) * 2000) + (10*1000)
                         flash_sale_stage = total
                         flash_sale = 2000
+                    }
+                    else {
+                        var total = ((pcs - 30) * 1000) + (10*1000) + 20*2000
+                        flash_sale_stage = total
+                        flash_sale = 1000
                     }
                 }
                 else{
