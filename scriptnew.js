@@ -332,11 +332,11 @@ function hpp(){
                 }
             }
 
-            else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7") {
-                if (program == "sltbvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
-                    flash_sale = 100;
-                }
-                else if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt") {
+            else if (paket == "fc20" || paket == "fi13" || paket == "fu3" || paket == "fu7" || paket == "fi25" || paket == "fi42" )  {
+                // if (program == "sltbvoucher" || program == "sltp125voucher" || program == "sltp1Mvoucher" || program == "sltp4Mvoucher"){
+                //     flash_sale = 100;
+                // }
+                if (program == "jwr100k" || program == "jwr1jt" || program == "jwr10jt" || program == "jwr100jt") {
                     if (pcs <= 10){
                         flash_sale_stage = 1000 *pcs
                         flash_sale = 1000
